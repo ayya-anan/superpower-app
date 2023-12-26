@@ -26,7 +26,7 @@ jobs:
         run: |
           npm install --global yarn
           yarn install
-          yarn docker:prod 
+          yarn dockerbuild:prod 
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
