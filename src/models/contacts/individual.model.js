@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const { toJSON, paginate } = require('../plugins');
+const { statusEmuns, addressTypeEmuns, phoneTypeEmuns, socialMediaTypeEmuns } = require('../../config/enums');
 
 const individualSchema = mongoose.Schema(
   {
     personalDetails: {
       salutation: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
       },
       firstName: {
@@ -28,15 +29,16 @@ const individualSchema = mongoose.Schema(
       status: {
         type: String,
         required: true,
-        trim: true,
-        lowercase: true,
+        enum: statusEmuns,
+        default: 'active',
       },
     },
     addresses: [
       {
         type: {
           type: String,
-          required: true,
+          required: false,
+          enum: addressTypeEmuns,
           trim: true,
         },
         streetNumber: {
@@ -77,12 +79,14 @@ const individualSchema = mongoose.Schema(
           type: String,
           required: true,
           trim: true,
+          enum: phoneTypeEmuns,
           lowercase: true,
         },
         phoneNumber: {
           type: String,
           required: true,
           trim: true,
+          unique: true,
         },
       },
     ],
@@ -102,59 +106,19 @@ const individualSchema = mongoose.Schema(
     ],
     socialMediaLinks: [
       {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-      },
-    ],
-
-    openOpportunities: [
-      {
-        accountManager: {
+        type: {
           type: String,
           required: true,
           trim: true,
+          enum: socialMediaTypeEmuns,
+          lowercase: true,
         },
-        source: {
+        url: {
           type: String,
           required: true,
           trim: true,
+          unique: true,
         },
-        opportunities: [
-          {
-            type: String,
-            required: true,
-            trim: true,
-          },
-        ],
-        deals: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-      },
-    ],
-    activityLogs: [
-      {
-        lastContact: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        modeOfContact: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        keyNotes: [
-          {
-            type: String,
-            required: true,
-            trim: true,
-          },
-        ],
       },
     ],
   },

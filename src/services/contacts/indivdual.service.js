@@ -41,13 +41,13 @@ const getIndividualById = async (id) => {
  * @returns {Promise<Individual>}
  */
 const updateIndividualById = async (IndividualId, updateBody) => {
-  const indivi = await getIndividualById(IndividualId);
-  if (!indivi) {
+  const individual = await getIndividualById(IndividualId);
+  if (!individual) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Individual not found');
   }
-  Object.assign(Individual, updateBody);
-  await Individual.save();
-  return Individual;
+  Object.assign(individual, updateBody);
+  await individual.save();
+  return individual;
 };
 
 /**
@@ -56,12 +56,12 @@ const updateIndividualById = async (IndividualId, updateBody) => {
  * @returns {Promise<Individual>}
  */
 const deleteIndividualById = async (IndividualId) => {
-  const indivi = await getIndividualById(IndividualId);
-  if (!indivi) {
+  const individual = await getIndividualById(IndividualId);
+  if (!individual) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Individual not found');
   }
-  await Individual.remove();
-  return Individual;
+  await individual.remove();
+  return individual;
 };
 
 module.exports = {
