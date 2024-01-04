@@ -1,0 +1,13 @@
+[
+    {
+        "type":"test",
+        "properties":[
+            {
+                "name":"property1",
+                "type":"string",
+                "validations":["required"],
+                "rules":[]
+            }
+        ]
+    }
+]
