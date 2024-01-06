@@ -139,7 +139,6 @@ const organizationSchema = mongoose.Schema(
       {
         type: {
           type: String,
-          required: true,
           trim: true,
           enum: socialMediaTypeEmuns,
           lowercase: true,
@@ -148,7 +147,6 @@ const organizationSchema = mongoose.Schema(
           type: String,
           required: true,
           trim: true,
-          unique: true,
         },
       },
     ],
