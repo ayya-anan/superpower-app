@@ -2,8 +2,8 @@ const Joi = require('joi');
 const { objectId } = require('../custom.validation');
 const { statusEmuns, addressTypeEmuns, phoneTypeEmuns, socialMediaTypeEmuns } = require('../../config/enums');
 
-const postBodySchema = {
-  personalDetails: Joi.object().keys({
+const postBodySchema = Joi.object({
+  personalDetails: Joi.object({
     salutation: Joi.string(),
     firstName: Joi.string().required(),
     middleName: Joi.string(),
@@ -11,10 +11,10 @@ const postBodySchema = {
     status: Joi.string()
       .required()
       .valid(...statusEmuns),
-  }),
+  }).required(),
   addresses: Joi.array()
     .items(
-      Joi.object().keys({
+      Joi.object({
         type: Joi.string()
           .required()
           .valid(...addressTypeEmuns),
@@ -29,7 +29,7 @@ const postBodySchema = {
     .required(),
   phones: Joi.array()
     .items(
-      Joi.object().keys({
+      Joi.object({
         type: Joi.string()
           .required()
           .valid(...phoneTypeEmuns),
@@ -39,17 +39,17 @@ const postBodySchema = {
     .required(),
   emailAddresses: Joi.array().items(Joi.string().required().email()).required(),
   socialMediaLinks: Joi.array().items(
-    Joi.object().keys({
+    Joi.object({
       type: Joi.string()
         .required()
         .valid(...socialMediaTypeEmuns),
       url: Joi.string().required().uri(),
     })
   ),
-};
+});
 
 const createIndividual = {
-  body: Joi.object().keys(postBodySchema),
+  body: postBodySchema,
 };
 
 const getIndividuals = {
@@ -70,7 +70,7 @@ const updateIndividual = {
   params: Joi.object().keys({
     individualId: Joi.required().custom(objectId),
   }),
-  body: Joi.object().keys(postBodySchema).min(1),
+  body: postBodySchema,
 };
 
 const deleteIndividual = {
