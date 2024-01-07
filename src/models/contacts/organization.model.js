@@ -12,14 +12,12 @@ const organizationSchema = mongoose.Schema(
         trim: true,
       },
       pointofContact: {
-        type: String,
-        required: false,
-        trim: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Individual',
       },
       accountManager: {
-        type: String,
-        required: false,
-        trim: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Individual',
       },
       website: {
         type: String,
@@ -74,6 +72,30 @@ const organizationSchema = mongoose.Schema(
         },
         zipCode: {
           type: String,
+          required: true,
+          trim: true,
+        },
+      },
+    ],
+    services: [
+      {
+        type: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        amount: {
+          type: Number,
+          required: true,
+          trim: true,
+        },
+        companyAverage: {
+          type: Number,
+          required: true,
+          trim: true,
+        },
+        tinoAverage: {
+          type: Number,
           required: true,
           trim: true,
         },

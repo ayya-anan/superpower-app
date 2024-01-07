@@ -29,6 +29,16 @@ const postBodySchema = Joi.object({
       })
     )
     .required(),
+  services: Joi.array()
+    .items(
+      Joi.object({
+        type: Joi.string().required().trim(),
+        amount: Joi.number().required(),
+        companyAverage: Joi.number().required(),
+        tinoAverage: Joi.number().required(),
+      })
+    )
+    .required(),
   addresses: Joi.array().items(
     Joi.object({
       type: Joi.string()
