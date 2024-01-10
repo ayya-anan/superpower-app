@@ -7,8 +7,10 @@ const ApiError = require('../utils/ApiError');
  * @param {Object} xBody
  * @returns {Promise<x>}
  */
-const createx = async (xBody) => {
-  return X[xBody.type].create(xBody.payload);
+const createx = async (type, xBody) => {
+  // eslint-disable-next-line no-console
+  console.log(xBody);
+  return X.get(type).create(xBody);
 };
 
 /**
@@ -21,10 +23,6 @@ const createx = async (xBody) => {
  * @returns {Promise<QueryResult>}
  */
 const queryxs = async (type, filter, options) => {
-  // eslint-disable-next-line no-console
-  console.log('here');
-  // eslint-disable-next-line no-console
-  console.log(X.get(type));
   const xs = await X.get(type).paginate(filter, options);
   return xs;
 };
@@ -34,8 +32,8 @@ const queryxs = async (type, filter, options) => {
  * @param {ObjectId} id
  * @returns {Promise<x>}
  */
-const getxById = async (id) => {
-  return X.findById(id);
+const getxById = async (type, id) => {
+  return X.get(type).findById(id);
 };
 
 /**
@@ -44,8 +42,8 @@ const getxById = async (id) => {
  * @param {Object} updateBody
  * @returns {Promise<x>}
  */
-const updatexById = async (xId, updateBody) => {
-  const xbyId = await getxById(xId);
+const updatexById = async (type, xId, updateBody) => {
+  const xbyId = await getxById(type, xId);
   if (!xbyId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'x not found');
   }
@@ -59,8 +57,8 @@ const updatexById = async (xId, updateBody) => {
  * @param {ObjectId} xId
  * @returns {Promise<x>}
  */
-const deletexById = async (xId) => {
-  const xbyId = await getxById(xId);
+const deletexById = async (type, xId) => {
+  const xbyId = await getxById(type, xId);
   if (!xbyId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'x not found');
   }

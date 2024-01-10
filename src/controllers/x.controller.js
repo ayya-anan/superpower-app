@@ -5,7 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const { xService } = require('../services');
 
 const createX = catchAsync(async (req, res) => {
-  const x = await xService.createx(req.body);
+  const x = await xService.createx(req.params.xType, req.body);
   res.status(httpStatus.CREATED).send(x);
 });
 
@@ -18,7 +18,7 @@ const getXs = catchAsync(async (req, res) => {
 });
 
 const getX = catchAsync(async (req, res) => {
-  const x = await xService.getxById(req.params.xId);
+  const x = await xService.getxById(req.params.xType, req.params.xId);
   if (!x) {
     throw new ApiError(httpStatus.NOT_FOUND, 'x not found');
   }
@@ -26,12 +26,12 @@ const getX = catchAsync(async (req, res) => {
 });
 
 const updateX = catchAsync(async (req, res) => {
-  const x = await xService.updatexById(req.params.xId, req.body);
+  const x = await xService.updatexById(req.params.xType, req.params.xId, req.body);
   res.send(x);
 });
 
 const deleteX = catchAsync(async (req, res) => {
-  await xService.deletexById(req.params.xId);
+  await xService.deletexById(req.params.xType, req.params.xId);
   res.status(httpStatus.NO_CONTENT).send();
 });
 

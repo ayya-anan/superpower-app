@@ -11,7 +11,7 @@ router
   .get(validate(xValidation.getXs), xController.getXs);
 
 router
-  .route('/:xId')
+  .route('/:xType/:xId')
   .get(validate(xValidation.getX), xController.getX)
   .patch(validate(xValidation.updateX), xController.updateX)
   .delete(validate(xValidation.deleteX), xController.deleteX);
