@@ -1,15 +1,12 @@
 const express = require('express');
 // const auth = require('../../middlewares/auth');
 const validate = require('../../middlewares/validate');
-const contactsValidation = require('../../validations/contacts.validation');
-const contactsController = require('../../controllers/contacts.controller');
+const templateValidation = require('../../validations/template.validation');
+const templateController = require('../../controllers/template.controller');
 
 const router = express.Router();
 
-router
-  // .route('/')
-  // .get(auth('getContacts'), validate(contactsValidation.getUsers), contactsController.getContacts);
-  .get('/', validate(contactsValidation.getUsers), contactsController.getContacts);
+router.post('/', validate(templateValidation.createInvoice), templateController.createInvoice);
 
 module.exports = router;
 
