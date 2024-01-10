@@ -3,6 +3,7 @@ const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const xRoute = require('./x.route');
+const templateRoute = require('./template.route');
 const individualRoute = require('./contacts/individual.route');
 const organizationRoute = require('./contacts/organization.route');
 const config = require('../../config/config');
@@ -29,6 +30,10 @@ const defaultRoutes = [
   {
     path: '/x',
     route: xRoute,
+  },
+  {
+    path: '/template',
+    route: templateRoute,
   },
 ];
 
