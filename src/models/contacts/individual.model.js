@@ -51,17 +51,22 @@ const individualSchema = mongoose.Schema(
           required: true,
           trim: true,
         },
-        city: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        state: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        county: {
+        // city: {
+        //   type: String,
+        //   required: true,
+        //   trim: true,
+        // },
+        // state: {
+        //   type: String,
+        //   required: true,
+        //   trim: true,
+        // },
+        // county: {
+        //   type: String,
+        //   required: true,
+        //   trim: true,
+        // },
+        country: {
           type: String,
           required: true,
           trim: true,
@@ -121,6 +126,23 @@ const individualSchema = mongoose.Schema(
         },
       },
     ],
+    professionalDetails: {
+      jobTitle: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      companyName: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      roleName: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+    },
   },
   { timestamps: true }
 );

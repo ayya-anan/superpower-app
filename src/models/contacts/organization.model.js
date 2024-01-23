@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
+// const validator = require('validator');
 const { toJSON, paginate } = require('../plugins');
-const { addressTypeEmuns, phoneTypeEmuns, socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
+const { socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
 
 const organizationSchema = mongoose.Schema(
   {
@@ -11,18 +11,36 @@ const organizationSchema = mongoose.Schema(
         required: true,
         trim: true,
       },
+      section: {
+        type: String,
+        required: false,
+      },
+      industryType: {
+        type: String,
+        required: false,
+      },
+      subType1: {
+        type: String,
+        required: false,
+      },
+      subType2: {
+        type: String,
+        required: false,
+      },
+      revenueRange: {
+        type: String,
+        required: false,
+        trim: true,
+      },
       pointofContact: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Individual',
+        type: Array,
+        required: false,
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'Individual',
       },
       accountManager: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Individual',
-      },
-      website: {
-        type: String,
-        required: false,
-        trim: true,
       },
       status: {
         type: String,
@@ -31,31 +49,22 @@ const organizationSchema = mongoose.Schema(
         default: 'active',
       },
     },
-    segmant: {
-      industryType: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-      subType: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-      revenueRange: {
-        type: String,
-        required: true,
-        trim: true,
-      },
-      notes: {
-        type: String,
-        required: false,
-        trim: true,
-      },
-    },
+    // segmant: {
+
+    //   notes: {
+    //     type: String,
+    //     required: false,
+    //     trim: true,
+    //   },
+    // },
     facilities: [
       {
         type: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        employeeCount: {
           type: String,
           required: true,
           trim: true,
@@ -71,6 +80,16 @@ const organizationSchema = mongoose.Schema(
           trim: true,
         },
         zipCode: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        emailAddress: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        phoneNumber: {
           type: String,
           required: true,
           trim: true,
@@ -94,69 +113,74 @@ const organizationSchema = mongoose.Schema(
           required: true,
           trim: true,
         },
-        tinoAverage: {
-          type: Number,
-          required: true,
-          trim: true,
-        },
+        // tinoAverage: {
+        //   type: Number,
+        //   required: false,
+        //   trim: true,
+        // },
       },
     ],
-    addresses: [
-      {
-        type: {
-          type: String,
-          required: false,
-          enum: addressTypeEmuns,
-          trim: true,
-        },
-        address: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        country: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        zipCode: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-      },
-    ],
-    phones: [
-      {
-        type: {
-          type: String,
-          required: true,
-          trim: true,
-          enum: phoneTypeEmuns,
-          lowercase: true,
-        },
-        phoneNumber: {
-          type: String,
-          required: true,
-          trim: true,
-          unique: true,
-        },
-      },
-    ],
-    emailAddresses: [
-      {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        validate(value) {
-          if (!validator.isEmail(value)) {
-            throw new Error('Invalid email');
-          }
-        },
-      },
-    ],
+    // addresses: [
+    //   {
+    //     type: {
+    //       type: String,
+    //       required: false,
+    //       enum: addressTypeEmuns,
+    //       trim: true,
+    //     },
+    //     address: {
+    //       type: String,
+    //       required: true,
+    //       trim: true,
+    //     },
+    //     country: {
+    //       type: String,
+    //       required: true,
+    //       trim: true,
+    //     },
+    //     zipCode: {
+    //       type: String,
+    //       required: true,
+    //       trim: true,
+    //     },
+    //     // website: {
+    //     //   type: String,
+    //     //   required: false,
+    //     //   trim: true,
+    //     // },
+    //   },
+    // ],
+    // phones: [
+    //   {
+    //     type: {
+    //       type: String,
+    //       required: true,
+    //       trim: true,
+    //       enum: phoneTypeEmuns,
+    //       lowercase: true,
+    //     },
+    //     phoneNumber: {
+    //       type: String,
+    //       required: true,
+    //       trim: true,
+    //       unique: true,
+    //     },
+    //   },
+    // ],
+    // emailAddresses: [
+    //   {
+    //     type: String,
+    //     required: true,
+    //     unique: true,
+    //     trim: true,
+    //     lowercase: true,
+    //     validate(value) {
+    //       if (!validator.isEmail(value)) {
+    //         throw new Error('Invalid email');
+    //       }
+    //     },
+    //   },
+    // ],
     socialMediaLinks: [
       {
         type: {
@@ -167,7 +191,7 @@ const organizationSchema = mongoose.Schema(
         },
         url: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
       },

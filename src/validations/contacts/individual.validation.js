@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const { objectId } = require('../custom.validation');
-const { statusEmuns, addressTypeEmuns, phoneTypeEmuns, socialMediaTypeEmuns } = require('../../config/enums');
+const { statusEmuns, addressTypeEmuns, phoneTypeEmuns } = require('../../config/enums');
 
 const postBodySchema = Joi.object({
   personalDetails: Joi.object({
@@ -20,9 +20,9 @@ const postBodySchema = Joi.object({
           .valid(...addressTypeEmuns),
         streetNumber: Joi.string().required(),
         streetName: Joi.string().required(),
-        city: Joi.string().required(),
-        state: Joi.string().required(),
-        county: Joi.string().required(),
+        // city: Joi.string(),
+        // state: Joi.string().required(),
+        country: Joi.string(),
         zipCode: Joi.string().required(),
       })
     )
@@ -38,14 +38,19 @@ const postBodySchema = Joi.object({
     )
     .required(),
   emailAddresses: Joi.array().items(Joi.string().required().email()).required(),
-  socialMediaLinks: Joi.array().items(
-    Joi.object({
-      type: Joi.string()
-        .required()
-        .valid(...socialMediaTypeEmuns),
-      url: Joi.string().required().uri(),
-    })
-  ),
+  // socialMediaLinks: Joi.array().items(
+  //   Joi.object({
+  //     type: Joi.string()
+  //       .required()
+  //       .valid(...socialMediaTypeEmuns),
+  //     url: Joi.string().required().uri(),
+  //   })
+  // ),
+  professionalDetails: Joi.object({
+    jobTitle: Joi.string(),
+    companyName: Joi.string(),
+    roleName: Joi.string(),
+  }).required(),
 });
 
 const createIndividual = {

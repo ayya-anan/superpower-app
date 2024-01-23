@@ -1,4 +1,4 @@
-const statusEmuns = ['active', 'inactive', 'deleted'];
+const statusEmuns = ['Prospect', 'Active', 'Inactive', 'Suspended'];
 const addressTypeEmuns = ['home', 'office'];
 const phoneTypeEmuns = ['home', 'office', 'personal'];
 const socialMediaTypeEmuns = ['facebook', 'linkedin', 'github'];
