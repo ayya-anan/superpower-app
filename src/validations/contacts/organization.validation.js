@@ -1,28 +1,41 @@
 const Joi = require('joi');
 const { objectId } = require('../custom.validation');
-const { addressTypeEmuns, phoneTypeEmuns, socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
+const { socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
 
 const postBodySchema = Joi.object({
   primaryDetails: Joi.object({
     name: Joi.string().required().trim(),
-    pointofContact: Joi.string().trim(),
+    pointofContact: Joi.array().items(
+      Joi.object({
+        firstName: Joi.string().trim(),
+        lastName: Joi.string().trim(),
+        email: Joi.string().trim(),
+        phone: Joi.string().trim(),
+        jobTitle: Joi.string().trim(),
+      })
+    ),
     accountManager: Joi.string().trim(),
-    website: Joi.string().trim(),
+    section: Joi.string().allow(''),
+    industryType: Joi.string().allow(''),
+    subType1: Joi.string().allow(''),
+    subType2: Joi.string().allow(''),
+    revenueRange: Joi.string().required().trim(),
+    // website: Joi.string().trim(),
     status: Joi.string()
       .required()
       .valid(...orgStatusEmuns)
-      .default('active'),
-  }).required(),
-  segmant: Joi.object({
-    industryType: Joi.string().required().trim(),
-    subType: Joi.string().required().trim(),
-    revenueRange: Joi.string().required().trim(),
-    notes: Joi.string().trim(),
-  }).required(),
+      .default('Prospect'),
+  }),
+  // segmant: Joi.object({
+  //   notes: Joi.string().trim(),
+  // }).required(),
   facilities: Joi.array()
     .items(
       Joi.object({
         type: Joi.string().required().trim(),
+        employeeCount: Joi.number().required(),
+        emailAddress: Joi.string().required().trim(),
+        phoneNumber: Joi.string().required(),
         address: Joi.string().required().trim(),
         country: Joi.string().required().trim(),
         zipCode: Joi.string().required().trim(),
@@ -35,31 +48,32 @@ const postBodySchema = Joi.object({
         type: Joi.string().required().trim(),
         amount: Joi.number().required(),
         companyAverage: Joi.number().required(),
-        tinoAverage: Joi.number().required(),
+        // tinoAverage: Joi.number().required(),
       })
     )
     .required(),
-  addresses: Joi.array().items(
-    Joi.object({
-      type: Joi.string()
-        .valid(...addressTypeEmuns)
-        .trim(),
-      address: Joi.string().required().trim(),
-      country: Joi.string().required().trim(),
-      zipCode: Joi.string().required().trim(),
-    })
-  ),
-  phones: Joi.array().items(
-    Joi.object({
-      type: Joi.string()
-        .required()
-        .valid(...phoneTypeEmuns)
-        .trim()
-        .lowercase(),
-      phoneNumber: Joi.string().required().trim(),
-    })
-  ),
-  emailAddresses: Joi.array().items(Joi.string().required().trim().lowercase().email()),
+  // addresses: Joi.array().items(
+  //   Joi.object({
+  //     type: Joi.string()
+  //       .valid(...addressTypeEmuns)
+  //       .trim(),
+  //     address: Joi.string().required().trim(),
+  //     country: Joi.string().required().trim(),
+  //     zipCode: Joi.string().required().trim(),
+  //     // website: Joi.string().trim()
+  //   })
+  // ),
+  // phones: Joi.array().items(
+  //   Joi.object({
+  //     type: Joi.string()
+  //       .required()
+  //       .valid(...phoneTypeEmuns)
+  //       .trim()
+  //       .lowercase(),
+  //     phoneNumber: Joi.string().required().trim(),
+  //   })
+  // ),
+  // emailAddresses: Joi.array().items(Joi.string().required().trim().lowercase().email()),
   socialMediaLinks: Joi.array().items(
     Joi.object({
       type: Joi.string()
