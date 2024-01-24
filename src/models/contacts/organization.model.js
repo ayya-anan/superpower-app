@@ -61,37 +61,37 @@ const organizationSchema = mongoose.Schema(
       {
         type: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
         employeeCount: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
         address: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
         country: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
         zipCode: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
         emailAddress: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
         phoneNumber: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
       },

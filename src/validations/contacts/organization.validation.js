@@ -32,16 +32,16 @@ const postBodySchema = Joi.object({
   facilities: Joi.array()
     .items(
       Joi.object({
-        type: Joi.string().required().trim(),
-        employeeCount: Joi.number().required(),
-        emailAddress: Joi.string().required().trim(),
-        phoneNumber: Joi.string().required(),
-        address: Joi.string().required().trim(),
-        country: Joi.string().required().trim(),
-        zipCode: Joi.string().required().trim(),
+        type: Joi.string().allow(''),
+        employeeCount: Joi.number().allow(''),
+        emailAddress: Joi.string().allow(''),
+        phoneNumber: Joi.string().allow(''),
+        address: Joi.string().allow(''),
+        country: Joi.string().allow(''),
+        zipCode: Joi.string().allow(''),
       })
     )
-    .required(),
+    .allow(''),
   services: Joi.array()
     .items(
       Joi.object({
