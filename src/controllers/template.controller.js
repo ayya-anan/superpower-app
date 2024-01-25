@@ -34,7 +34,7 @@ const catchAsync = require('../utils/catchAsync');
 
 const createInvoice = catchAsync(async (req, res) => {
   const subject = 'Quote';
-  const to = 'jerinjose.j@gmail.com';
+  const to = 'k.karthikeyan@raisusa.com';
   const content = he.decode(req.body.content);
   await sendEmail(to, subject, '', content);
   res.status(httpStatus.NO_CONTENT).send();
