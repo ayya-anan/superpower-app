@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
+// const validator = require('validator');
 const { toJSON, paginate } = require('../plugins');
-const { statusEmuns, addressTypeEmuns, phoneTypeEmuns, socialMediaTypeEmuns } = require('../../config/enums');
+const { statusEmuns } = require('../../config/enums');
 
 const individualSchema = mongoose.Schema(
   {
-    personalDetails: {
+    primaryDetails: {
+      id: {
+        type: String,
+        required: false,
+        trim: true,
+      },
       salutation: {
         type: String,
         required: false,
@@ -28,105 +33,10 @@ const individualSchema = mongoose.Schema(
       },
       status: {
         type: String,
-        required: true,
+        required: false,
         enum: statusEmuns,
-        default: 'active',
+        default: 'Prospect',
       },
-    },
-    addresses: [
-      {
-        type: {
-          type: String,
-          required: false,
-          enum: addressTypeEmuns,
-          trim: true,
-        },
-        streetNumber: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        streetName: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        // city: {
-        //   type: String,
-        //   required: true,
-        //   trim: true,
-        // },
-        // state: {
-        //   type: String,
-        //   required: true,
-        //   trim: true,
-        // },
-        // county: {
-        //   type: String,
-        //   required: true,
-        //   trim: true,
-        // },
-        country: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-        zipCode: {
-          type: String,
-          required: true,
-          trim: true,
-        },
-      },
-    ],
-    phones: [
-      {
-        type: {
-          type: String,
-          required: true,
-          trim: true,
-          enum: phoneTypeEmuns,
-          lowercase: true,
-        },
-        phoneNumber: {
-          type: String,
-          required: true,
-          trim: true,
-          unique: true,
-        },
-      },
-    ],
-    emailAddresses: [
-      {
-        type: String,
-        required: true,
-        unique: true,
-        trim: true,
-        lowercase: true,
-        validate(value) {
-          if (!validator.isEmail(value)) {
-            throw new Error('Invalid email');
-          }
-        },
-      },
-    ],
-    socialMediaLinks: [
-      {
-        type: {
-          type: String,
-          required: true,
-          trim: true,
-          enum: socialMediaTypeEmuns,
-          lowercase: true,
-        },
-        url: {
-          type: String,
-          required: true,
-          trim: true,
-          unique: true,
-        },
-      },
-    ],
-    professionalDetails: {
       jobTitle: {
         type: String,
         required: false,
@@ -143,6 +53,45 @@ const individualSchema = mongoose.Schema(
         trim: true,
       },
     },
+    addresses: [
+      {
+        primaryEmail: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        alternateEmail: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        primaryPhone: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        alternatePhone: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        address: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        zipCode: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        country: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -6,25 +6,30 @@ const { socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
 const organizationSchema = mongoose.Schema(
   {
     primaryDetails: {
+      orgId: {
+        type: String,
+        required: true,
+        trim: true,
+      },
       name: {
         type: String,
         required: true,
         trim: true,
       },
       section: {
-        type: String,
+        type: Object,
         required: false,
       },
       industryType: {
-        type: String,
+        type: Object,
         required: false,
       },
       subType1: {
-        type: String,
+        type: Object,
         required: false,
       },
       subType2: {
-        type: String,
+        type: Object,
         required: false,
       },
       revenueRange: {
@@ -39,8 +44,10 @@ const organizationSchema = mongoose.Schema(
         // ref: 'Individual',
       },
       accountManager: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Individual',
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'Individual',
+        type: String,
+        required: false,
       },
       status: {
         type: String,
@@ -49,14 +56,6 @@ const organizationSchema = mongoose.Schema(
         default: 'active',
       },
     },
-    // segmant: {
-
-    //   notes: {
-    //     type: String,
-    //     required: false,
-    //     trim: true,
-    //   },
-    // },
     facilities: [
       {
         type: {
@@ -65,6 +64,16 @@ const organizationSchema = mongoose.Schema(
           trim: true,
         },
         employeeCount: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        emailAddress: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        phoneNumber: {
           type: String,
           required: false,
           trim: true,
@@ -84,40 +93,25 @@ const organizationSchema = mongoose.Schema(
           required: false,
           trim: true,
         },
-        emailAddress: {
-          type: String,
-          required: false,
-          trim: true,
-        },
-        phoneNumber: {
-          type: String,
-          required: false,
-          trim: true,
-        },
       },
     ],
     services: [
       {
         type: {
           type: String,
-          required: true,
+          required: false,
           trim: true,
         },
         amount: {
           type: Number,
-          required: true,
+          required: false,
           trim: true,
         },
         companyAverage: {
           type: Number,
-          required: true,
+          required: false,
           trim: true,
         },
-        // tinoAverage: {
-        //   type: Number,
-        //   required: false,
-        //   trim: true,
-        // },
       },
     ],
     // addresses: [

@@ -1,56 +1,34 @@
 const Joi = require('joi');
 const { objectId } = require('../custom.validation');
-const { statusEmuns, addressTypeEmuns, phoneTypeEmuns } = require('../../config/enums');
+const { statusEmuns } = require('../../config/enums');
 
 const postBodySchema = Joi.object({
-  personalDetails: Joi.object({
+  primaryDetails: Joi.object({
+    id: Joi.string(),
     salutation: Joi.string(),
     firstName: Joi.string().required(),
-    middleName: Joi.string(),
+    middleName: Joi.string().allow(null).allow(''),
     lastName: Joi.string().required(),
-    status: Joi.string()
-      .required()
-      .valid(...statusEmuns),
-  }).required(),
+    status: Joi.object()
+      .valid(...statusEmuns)
+      .default('Prospect'),
+    jobTitle: Joi.string().allow(null).allow(''),
+    companyName: Joi.string().allow(null).allow(''),
+    roleName: Joi.string().allow(null).allow(''),
+  }).allow(''),
   addresses: Joi.array()
     .items(
       Joi.object({
-        type: Joi.string()
-          .required()
-          .valid(...addressTypeEmuns),
-        streetNumber: Joi.string().required(),
-        streetName: Joi.string().required(),
-        // city: Joi.string(),
-        // state: Joi.string().required(),
-        country: Joi.string(),
-        zipCode: Joi.string().required(),
+        primaryEmail: Joi.string().allow(null).allow(''),
+        alternateEmail: Joi.string().allow(null).allow(''),
+        primaryPhone: Joi.string().allow(null).allow(''),
+        alternatePhone: Joi.string().allow(null).allow(''),
+        address: Joi.string().allow(null).allow(''),
+        country: Joi.string().allow(null).allow(''),
+        zipCode: Joi.string().allow(null).allow(''),
       })
     )
-    .required(),
-  phones: Joi.array()
-    .items(
-      Joi.object({
-        type: Joi.string()
-          .required()
-          .valid(...phoneTypeEmuns),
-        phoneNumber: Joi.string().required(),
-      })
-    )
-    .required(),
-  emailAddresses: Joi.array().items(Joi.string().required().email()).required(),
-  // socialMediaLinks: Joi.array().items(
-  //   Joi.object({
-  //     type: Joi.string()
-  //       .required()
-  //       .valid(...socialMediaTypeEmuns),
-  //     url: Joi.string().required().uri(),
-  //   })
-  // ),
-  professionalDetails: Joi.object({
-    jobTitle: Joi.string(),
-    companyName: Joi.string(),
-    roleName: Joi.string(),
-  }).required(),
+    .allow(''),
 });
 
 const createIndividual = {
