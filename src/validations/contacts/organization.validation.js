@@ -4,22 +4,22 @@ const { socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
 
 const postBodySchema = Joi.object({
   primaryDetails: Joi.object({
+    orgId: Joi.string().required().trim(),
     name: Joi.string().required().trim(),
     pointofContact: Joi.array().items(
       Joi.object({
-        firstName: Joi.string().trim(),
-        lastName: Joi.string().trim(),
-        email: Joi.string().trim(),
-        phone: Joi.string().trim(),
-        jobTitle: Joi.string().trim(),
+        name: Joi.string().trim(),
+        email: Joi.string().trim().allow(''),
+        phone: Joi.string().trim().allow(''),
+        jobTitle: Joi.string().trim().allow(''),
       })
     ),
-    accountManager: Joi.string().trim(),
-    section: Joi.string().allow(''),
-    industryType: Joi.string().allow(''),
-    subType1: Joi.string().allow(''),
-    subType2: Joi.string().allow(''),
-    revenueRange: Joi.string().required().trim(),
+    accountManager: Joi.string().allow(null).allow(''),
+    section: Joi.object().allow(''),
+    industryType: Joi.object().allow(''),
+    subType1: Joi.object().allow(''),
+    subType2: Joi.object().allow(''),
+    revenueRange: Joi.string().trim(),
     // website: Joi.string().trim(),
     status: Joi.string()
       .required()
@@ -32,26 +32,25 @@ const postBodySchema = Joi.object({
   facilities: Joi.array()
     .items(
       Joi.object({
-        type: Joi.string().allow(''),
-        employeeCount: Joi.number().allow(''),
-        emailAddress: Joi.string().allow(''),
-        phoneNumber: Joi.string().allow(''),
-        address: Joi.string().allow(''),
-        country: Joi.string().allow(''),
-        zipCode: Joi.string().allow(''),
+        type: Joi.string().allow(null).allow(''),
+        employeeCount: Joi.number().allow(null).allow(''),
+        emailAddress: Joi.string().allow(null).allow(''),
+        phoneNumber: Joi.string().allow(null).allow(''),
+        address: Joi.string().allow(null).allow(''),
+        country: Joi.string().allow(null).allow(''),
+        zipCode: Joi.string().allow(null).allow(''),
       })
     )
     .allow(''),
   services: Joi.array()
     .items(
       Joi.object({
-        type: Joi.string().required().trim(),
-        amount: Joi.number().required(),
-        companyAverage: Joi.number().required(),
-        // tinoAverage: Joi.number().required(),
+        type: Joi.string().trim().allow(null).allow(''),
+        amount: Joi.number().allow(null).allow(''),
+        companyAverage: Joi.number().allow(null).allow(''),
       })
     )
-    .required(),
+    .allow(''),
   // addresses: Joi.array().items(
   //   Joi.object({
   //     type: Joi.string()
