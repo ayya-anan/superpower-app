@@ -48,6 +48,7 @@ const postBodySchema = Joi.object({
         type: Joi.string().trim().allow(null).allow(''),
         amount: Joi.number().allow(null).allow(''),
         companyAverage: Joi.number().allow(null).allow(''),
+        tinoAverage: Joi.number().allow(null).allow(''),
       })
     )
     .allow(''),
