@@ -112,6 +112,11 @@ const organizationSchema = mongoose.Schema(
           required: false,
           trim: true,
         },
+        tinoAverage: {
+          type: Number,
+          required: false,
+          trim: true,
+        },
       },
     ],
     // addresses: [
