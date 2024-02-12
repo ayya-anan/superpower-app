@@ -26,9 +26,9 @@ const postBodySchema = Joi.object({
       .valid(...orgStatusEmuns)
       .default('Prospect'),
     invoiceFrequency: Joi.string().allow(null).allow(''),
-    startDate: Joi.object().allow(''),
-    endDate: Joi.object().allow(''),
-    customerSince: Joi.object().allow(''),
+    startDate: Joi.string().allow(null).allow(''),
+    endDate: Joi.string().allow(null).allow(''),
+    customerSince: Joi.string().allow(null).allow(''),
   }),
   // segmant: Joi.object({
   //   notes: Joi.string().trim(),
