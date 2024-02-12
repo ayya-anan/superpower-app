@@ -55,6 +55,22 @@ const organizationSchema = mongoose.Schema(
         enum: orgStatusEmuns,
         default: 'active',
       },
+      invoiceFrequency: {
+        type: String,
+        required: false,
+      },
+      startDate: {
+        type: Object,
+        required: false,
+      },
+      endDate: {
+        type: Object,
+        required: false,
+      },
+      customerSince: {
+        type: Object,
+        required: false,
+      },
     },
     facilities: [
       {
