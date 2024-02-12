@@ -60,15 +60,15 @@ const organizationSchema = mongoose.Schema(
         required: false,
       },
       startDate: {
-        type: Object,
+        type: String,
         required: false,
       },
       endDate: {
-        type: Object,
+        type: String,
         required: false,
       },
       customerSince: {
-        type: Object,
+        type: String,
         required: false,
       },
     },
