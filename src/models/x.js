@@ -1,3 +1,5 @@
+// const { object } = require('joi');
+
 const x = [
   {
     type: 'test',
@@ -85,6 +87,23 @@ const x = [
           ],
         },
       ],
+    },
+  },
+  {
+    type: 'taskAllocation',
+    model: {
+      allocatedHours: { type: Object, required: true },
+      allocationPercentage: { type: Number, required: true },
+      startDate: { type: Date, required: true },
+      endDate: { type: Date, required: true },
+      id: { type: String, required: true },
+      name: { type: String, required: true },
+      project: { type: String, required: true },
+      remainingHours: { type: Object, required: true },
+      submittedHours: { type: Object, required: true },
+      taskId: { type: String, required: true },
+      taskName: { type: String, required: true },
+      totalAllocatedHours: { type: Number, required: true },
     },
   },
 ];
