@@ -96,6 +96,7 @@ const x = [
       allocationPercentage: { type: Number, required: true },
       startDate: { type: Date, required: true },
       endDate: { type: Date, required: true },
+      id: { type: String, required: false },
       orgId: { type: String, required: true },
       name: { type: String, required: true },
       project: { type: String, required: true },
