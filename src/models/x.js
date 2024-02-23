@@ -106,6 +106,12 @@ const x = [
       totalAllocatedHours: { type: Number, required: true },
     },
   },
+  {
+    type: 'WZCode',
+    model: {
+      data: [],
+    },
+  },
 ];
 
 module.exports = x;
