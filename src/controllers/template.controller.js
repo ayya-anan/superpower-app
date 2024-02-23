@@ -34,10 +34,14 @@ const catchAsync = require('../utils/catchAsync');
 
 const createInvoice = catchAsync(async (req, res) => {
   const subject = 'Quote';
-  const to = 'k.karthikeyan@raisusa.com';
+  const to = 'jerinjose.j@gmail.com';
   const content = he.decode(req.body.content);
-  await sendEmail(to, subject, '', content);
-  res.status(httpStatus.NO_CONTENT).send();
+  try {
+    const response = await sendEmail(to, subject, '', content);
+    res.status(httpStatus.OK).send({ response });
+  } catch (error) {
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send({ error: error.message });
+  }
 
   // const buffer = await createReport({
   //   template,
