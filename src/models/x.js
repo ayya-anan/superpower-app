@@ -103,6 +103,7 @@ const x = [
       submittedHours: { type: Object, required: true },
       taskId: { type: String, required: true },
       taskName: { type: String, required: true },
+      address: { type: String, required: true },
       totalAllocatedHours: { type: Number, required: true },
     },
   },
