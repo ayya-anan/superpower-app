@@ -63,6 +63,7 @@ const x = [
           date: { type: Date, required: true },
           status: { type: String, required: true },
           type: { type: String },
+          paymentType: { type: String },
           subTotal: { type: Number, required: true },
           vat: { type: Number, required: true },
           discount: { type: String, required: true },
