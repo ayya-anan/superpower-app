@@ -55,6 +55,7 @@ const x = [
       accountManager: { type: String },
       startDate: { type: Date, required: true },
       source: String,
+      type: { type: String },
       value: { type: Number, required: true },
       closeDate: { type: Date, required: true },
       quotes: [
