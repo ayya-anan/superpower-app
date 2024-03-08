@@ -36,6 +36,7 @@ const postBodySchema = Joi.object({
   facilities: Joi.array()
     .items(
       Joi.object({
+        _id: Joi.string().allow(null).allow(''),
         type: Joi.string().allow(null).allow(''),
         employeeCount: Joi.number().allow(null).allow(''),
         emailAddress: Joi.string().allow(null).allow(''),
@@ -49,6 +50,7 @@ const postBodySchema = Joi.object({
   services: Joi.array()
     .items(
       Joi.object({
+        _id: Joi.string().allow(null).allow(''),
         type: Joi.string().trim().allow(null).allow(''),
         amount: Joi.number().allow(null).allow(''),
         companyAverage: Joi.number().allow(null).allow(''),
