@@ -28,10 +28,10 @@ const dealSchema = mongoose.Schema(
         services: [
           {
             facility: { type: String, required: true },
-            service: { type: String, required: true },
+            service: { type: Object, required: true },
             unitRate: { type: Number, required: true },
             quantity: { type: Number, required: true },
-            measure: { type: String },
+            description: { type: String },
             employeeCount: { type: Number },
             total: { type: Number, required: true },
             startDate: { type: Date },
