@@ -7,6 +7,7 @@ const templateRoute = require('./template.route');
 const individualRoute = require('./contacts/individual.route');
 const organizationRoute = require('./contacts/organization.route');
 const config = require('../../config/config');
+const DealRoute = require('./leads/deal.route');
 
 const router = express.Router();
 
@@ -26,6 +27,10 @@ const defaultRoutes = [
   {
     path: '/contacts/organization',
     route: organizationRoute,
+  },
+  {
+    path: '/leads/deal',
+    route: DealRoute,
   },
   {
     path: '/x',
