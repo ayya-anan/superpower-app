@@ -7,7 +7,7 @@ const models = require('./x');
 
 models.forEach((m) => {
   // eslint-disable-next-line no-console
-  const xSchema = mongoose.Schema(m.model);
+  const xSchema = mongoose.Schema(m.model, { timestamps: true });
   // add plugin that converts mongoose to json
   xSchema.plugin(toJSON);
   xSchema.plugin(paginate);
