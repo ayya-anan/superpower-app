@@ -115,10 +115,11 @@ const x = [
     model: {
       type: { type: String, required: true },
       subtype: { type: String, required: true },
+      serviceProvided: { type: String, required: true },
       measure: { type: String, required: true },
       rate: { type: String, required: true },
       validTill: { type: Date, required: true },
-      template: { type: String, required: true },
+      // template: { type: String, required: true },
     },
   },
   {
