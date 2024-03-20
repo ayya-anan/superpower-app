@@ -71,7 +71,7 @@ const x = [
       measure: { type: String, required: true },
       rate: { type: String, required: true },
       validTill: { type: Date, required: true },
-      // template: { type: String, required: true },
+      template: { type: String, required: false },
     },
   },
   {
