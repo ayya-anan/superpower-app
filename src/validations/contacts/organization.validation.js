@@ -1,11 +1,15 @@
 const Joi = require('joi');
 const { objectId } = require('../custom.validation');
-const { socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
+const { orgStatusEmuns } = require('../../config/enums');
 
 const postBodySchema = Joi.object({
+  informations: Joi.object({
+    notes: Joi.string().allow(null).allow(''),
+  }),
   primaryDetails: Joi.object({
     orgId: Joi.string().required().trim(),
     name: Joi.string().required().trim(),
+    certifyingOrg: Joi.boolean(),
     pointofContact: Joi.array().items(
       Joi.object({
         name: Joi.string().trim(),
@@ -15,10 +19,6 @@ const postBodySchema = Joi.object({
       })
     ),
     accountManager: Joi.string().allow(null).allow(''),
-    section: Joi.object().allow(''),
-    industryType: Joi.object().allow(''),
-    subType1: Joi.object().allow(''),
-    subType2: Joi.object().allow(''),
     revenueRange: Joi.string().trim(),
     // website: Joi.string().trim(),
     status: Joi.string()
@@ -30,9 +30,6 @@ const postBodySchema = Joi.object({
     endDate: Joi.string().allow(null).allow(''),
     customerSince: Joi.string().allow(null).allow(''),
   }),
-  // segmant: Joi.object({
-  //   notes: Joi.string().trim(),
-  // }).required(),
   facilities: Joi.array()
     .items(
       Joi.object({
@@ -52,44 +49,19 @@ const postBodySchema = Joi.object({
       Joi.object({
         _id: Joi.string().allow(null).allow(''),
         type: Joi.string().trim().allow(null).allow(''),
+        subtype: Joi.string().trim().allow(null).allow(''),
+        serviceProvided: Joi.string().trim().allow(null).allow(''),
         amount: Joi.number().allow(null).allow(''),
-        companyAverage: Joi.number().allow(null).allow(''),
-        tinoAverage: Joi.number().allow(null).allow(''),
       })
     )
     .allow(''),
-  // addresses: Joi.array().items(
-  //   Joi.object({
-  //     type: Joi.string()
-  //       .valid(...addressTypeEmuns)
-  //       .trim(),
-  //     address: Joi.string().required().trim(),
-  //     country: Joi.string().required().trim(),
-  //     zipCode: Joi.string().required().trim(),
-  //     // website: Joi.string().trim()
-  //   })
-  // ),
-  // phones: Joi.array().items(
-  //   Joi.object({
-  //     type: Joi.string()
-  //       .required()
-  //       .valid(...phoneTypeEmuns)
-  //       .trim()
-  //       .lowercase(),
-  //     phoneNumber: Joi.string().required().trim(),
-  //   })
-  // ),
-  // emailAddresses: Joi.array().items(Joi.string().required().trim().lowercase().email()),
-  socialMediaLinks: Joi.array().items(
-    Joi.object({
-      type: Joi.string()
-        .required()
-        .valid(...socialMediaTypeEmuns)
-        .trim()
-        .lowercase(),
-      url: Joi.string().required().trim(),
-    })
-  ),
+  multiplierValue: Joi.object({
+    section: Joi.object().allow(''),
+    industryType: Joi.object().allow(''),
+    subType1: Joi.object().allow(''),
+    subType2: Joi.object().allow(''),
+    multiplier: Joi.number().allow(null).allow(''),
+  }),
 });
 
 const createOrganization = {

@@ -1,10 +1,17 @@
 const mongoose = require('mongoose');
 // const validator = require('validator');
 const { toJSON, paginate } = require('../plugins');
-const { socialMediaTypeEmuns, orgStatusEmuns } = require('../../config/enums');
+const { orgStatusEmuns } = require('../../config/enums');
 
 const organizationSchema = mongoose.Schema(
   {
+    informations: {
+      notes: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+    },
     primaryDetails: {
       orgId: {
         type: String,
@@ -16,20 +23,8 @@ const organizationSchema = mongoose.Schema(
         required: true,
         trim: true,
       },
-      section: {
-        type: Object,
-        required: false,
-      },
-      industryType: {
-        type: Object,
-        required: false,
-      },
-      subType1: {
-        type: Object,
-        required: false,
-      },
-      subType2: {
-        type: Object,
+      certifyingOrg: {
+        type: Boolean,
         required: false,
       },
       revenueRange: {
@@ -40,12 +35,8 @@ const organizationSchema = mongoose.Schema(
       pointofContact: {
         type: Array,
         required: false,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'Individual',
       },
       accountManager: {
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'Individual',
         type: String,
         required: false,
       },
@@ -118,99 +109,45 @@ const organizationSchema = mongoose.Schema(
           required: false,
           trim: true,
         },
+        subtype: {
+          type: String,
+          required: false,
+          trim: true,
+        },
+        serviceProvided: {
+          type: String,
+          required: false,
+          trim: true,
+        },
         amount: {
           type: Number,
           required: false,
           trim: true,
         },
-        companyAverage: {
-          type: Number,
-          required: false,
-          trim: true,
-        },
-        tinoAverage: {
-          type: Number,
-          required: false,
-          trim: true,
-        },
       },
     ],
-    // addresses: [
-    //   {
-    //     type: {
-    //       type: String,
-    //       required: false,
-    //       enum: addressTypeEmuns,
-    //       trim: true,
-    //     },
-    //     address: {
-    //       type: String,
-    //       required: true,
-    //       trim: true,
-    //     },
-    //     country: {
-    //       type: String,
-    //       required: true,
-    //       trim: true,
-    //     },
-    //     zipCode: {
-    //       type: String,
-    //       required: true,
-    //       trim: true,
-    //     },
-    //     // website: {
-    //     //   type: String,
-    //     //   required: false,
-    //     //   trim: true,
-    //     // },
-    //   },
-    // ],
-    // phones: [
-    //   {
-    //     type: {
-    //       type: String,
-    //       required: true,
-    //       trim: true,
-    //       enum: phoneTypeEmuns,
-    //       lowercase: true,
-    //     },
-    //     phoneNumber: {
-    //       type: String,
-    //       required: true,
-    //       trim: true,
-    //       unique: true,
-    //     },
-    //   },
-    // ],
-    // emailAddresses: [
-    //   {
-    //     type: String,
-    //     required: true,
-    //     unique: true,
-    //     trim: true,
-    //     lowercase: true,
-    //     validate(value) {
-    //       if (!validator.isEmail(value)) {
-    //         throw new Error('Invalid email');
-    //       }
-    //     },
-    //   },
-    // ],
-    socialMediaLinks: [
-      {
-        type: {
-          type: String,
-          trim: true,
-          enum: socialMediaTypeEmuns,
-          lowercase: true,
-        },
-        url: {
-          type: String,
-          required: false,
-          trim: true,
-        },
+    multiplierValue: {
+      section: {
+        type: Object,
+        required: false,
       },
-    ],
+      industryType: {
+        type: Object,
+        required: false,
+      },
+      subType1: {
+        type: Object,
+        required: false,
+      },
+      subType2: {
+        type: Object,
+        required: false,
+      },
+      multiplier: {
+        type: String,
+        required: false,
+      },
+    },
   },
   { timestamps: true }
 );
