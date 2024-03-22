@@ -56,10 +56,10 @@ const postBodySchema = Joi.object({
     )
     .allow(''),
   multiplierValue: Joi.object({
-    section: Joi.object().allow(''),
-    industryType: Joi.object().allow(''),
-    subType1: Joi.object().allow(''),
-    subType2: Joi.object().allow(''),
+    section: Joi.object().allow(null).allow(''),
+    industryType: Joi.object().allow(null).allow(''),
+    subType1: Joi.object().allow(null).allow(''),
+    subType2: Joi.object().allow(null).allow(''),
     multiplier: Joi.number().allow(null).allow(''),
   }),
 });
