@@ -14,6 +14,7 @@ const dealSchema = mongoose.Schema(
     type: { type: String },
     subType: { type: String },
     value: { type: Number, required: true },
+    facility: { type: String, required: true },
     closeDate: { type: Date, required: true },
     quotes: [
       {
@@ -30,7 +31,8 @@ const dealSchema = mongoose.Schema(
         paymentMilestone: { type: Number },
         services: [
           {
-            facility: { type: String, required: true },
+            facility: { type: String },
+            type: { type: String },
             service: { type: Object, required: true },
             unitRate: { type: Number, required: true },
             quantity: { type: Number },
