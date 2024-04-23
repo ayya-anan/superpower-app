@@ -31,6 +31,7 @@ const dealSchema = mongoose.Schema(
         paymentMilestone: { type: Number },
         services: [
           {
+            dealType: { type: String, required: true },
             facility: { type: String },
             type: { type: String },
             service: { type: Object, required: true },
@@ -41,6 +42,7 @@ const dealSchema = mongoose.Schema(
             total: { type: Number, required: true },
             startDate: { type: Date },
             endDate: { type: Date },
+            includeInTotal: { type: Boolean },
           },
         ],
         payments: [
