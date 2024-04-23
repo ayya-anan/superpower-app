@@ -1,12 +1,17 @@
 const express = require('express');
 // const auth = require('../../middlewares/auth');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const multer = require('multer');
 const validate = require('../../middlewares/validate');
 const templateValidation = require('../../validations/template.validation');
 const templateController = require('../../controllers/template.controller');
 
+// Configure multer for file upload
+const upload = multer();
+
 const router = express.Router();
 
-router.post('/', validate(templateValidation.createInvoice), templateController.createInvoice);
+router.post('/', upload.single('pdfQuote'), validate(templateValidation.createInvoice), templateController.createInvoice);
 
 module.exports = router;
 
