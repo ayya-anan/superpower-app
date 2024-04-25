@@ -65,6 +65,7 @@ const x = [
   {
     type: 'serviceList',
     model: {
+      rootType: { type: String, required: true },
       type: { type: String, required: true },
       subtype: { type: String, required: true },
       serviceProvided: { type: String, required: true },
