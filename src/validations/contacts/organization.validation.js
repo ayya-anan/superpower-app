@@ -34,6 +34,7 @@ const postBodySchema = Joi.object({
     .items(
       Joi.object({
         _id: Joi.string().allow(null).allow(''),
+        defaultSelection: Joi.boolean(),
         type: Joi.string().allow(null).allow(''),
         employeeCount: Joi.number().allow(null).allow(''),
         emailAddress: Joi.string().allow(null).allow(''),
