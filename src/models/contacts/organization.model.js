@@ -65,6 +65,10 @@ const organizationSchema = mongoose.Schema(
     },
     facilities: [
       {
+        defaultSelection: {
+          type: Boolean,
+          required: false,
+        },
         type: {
           type: String,
           required: false,
