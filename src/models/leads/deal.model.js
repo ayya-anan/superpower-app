@@ -56,6 +56,16 @@ const dealSchema = mongoose.Schema(
         ],
       },
     ],
+    leadDetails: {
+      name: { type: String },
+      number: { type: Number },
+      email: { type: String },
+      leadMode: { type: String },
+      followUpdate: { type: Date },
+      ballParkEst: { type: Number },
+      description: { type: String },
+      note: { type: String },
+    },
   },
   { timestamps: true }
 );
