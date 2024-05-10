@@ -58,7 +58,7 @@ const dealSchema = mongoose.Schema(
     ],
     leadDetails: {
       name: { type: String },
-      number: { type: Number },
+      number: { type: String },
       email: { type: String },
       leadMode: { type: String },
       followUpdate: { type: Date },
