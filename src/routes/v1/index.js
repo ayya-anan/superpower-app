@@ -8,6 +8,7 @@ const individualRoute = require('./contacts/individual.route');
 const organizationRoute = require('./contacts/organization.route');
 const config = require('../../config/config');
 const DealRoute = require('./leads/deal.route');
+const KanbanRoute = require('./configuration/kanban.route');
 
 const router = express.Router();
 
@@ -31,6 +32,10 @@ const defaultRoutes = [
   {
     path: '/leads/deal',
     route: DealRoute,
+  },
+  {
+    path: '/configuration/kanban',
+    route: KanbanRoute,
   },
   {
     path: '/x',
