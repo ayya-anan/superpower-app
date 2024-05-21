@@ -15,7 +15,7 @@ const organizationSchema = mongoose.Schema(
     primaryDetails: {
       orgId: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
       },
       name: {
@@ -23,18 +23,10 @@ const organizationSchema = mongoose.Schema(
         required: true,
         trim: true,
       },
-      certifyingOrg: {
-        type: Boolean,
-        required: false,
-      },
       revenueRange: {
         type: String,
         required: false,
         trim: true,
-      },
-      pointofContact: {
-        type: Array,
-        required: false,
       },
       accountManager: {
         type: String,
