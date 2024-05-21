@@ -7,19 +7,18 @@ const postBodySchema = Joi.object({
     notes: Joi.string().allow(null).allow(''),
   }),
   primaryDetails: Joi.object({
-    orgId: Joi.string().required().trim(),
+    orgId: Joi.string().required().trim().allow(''),
     name: Joi.string().required().trim(),
-    certifyingOrg: Joi.boolean(),
-    pointofContact: Joi.array().items(
-      Joi.object({
-        name: Joi.string().trim(),
-        email: Joi.string().trim().allow(''),
-        phone: Joi.string().trim().allow(''),
-        jobTitle: Joi.string().trim().allow(''),
-      })
-    ),
+    // pointofContact: Joi.array().items(
+    //   Joi.object({
+    //     name: Joi.string().trim(),
+    //     email: Joi.string().trim().allow(''),
+    //     phone: Joi.string().trim().allow(''),
+    //     jobTitle: Joi.string().trim().allow(''),
+    //   })
+    // ),
     accountManager: Joi.string().allow(null).allow(''),
-    revenueRange: Joi.string().trim(),
+    revenueRange: Joi.string().trim().allow(''),
     // website: Joi.string().trim(),
     status: Joi.string()
       .required()
