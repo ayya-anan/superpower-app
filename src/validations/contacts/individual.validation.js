@@ -15,6 +15,9 @@ const postBodySchema = Joi.object({
     jobTitle: Joi.string().allow(null).allow(''),
     companyName: Joi.string().allow(null).allow(''),
     roleName: Joi.string().allow(null).allow(''),
+    joiningDate: Joi.string().allow(null).allow(''),
+    workType: Joi.string().allow(null).allow(''),
+    PrefferedWorkingHours: Joi.number().allow(null).allow(),
   }).allow(''),
   addresses: Joi.array()
     .items(

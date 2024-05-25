@@ -52,6 +52,21 @@ const individualSchema = mongoose.Schema(
         required: false,
         trim: true,
       },
+      joiningDate: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      workType: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      PrefferedWorkingHours: {
+        type: Number,
+        required: false,
+        trim: true,
+      },
     },
     addresses: [
       {
