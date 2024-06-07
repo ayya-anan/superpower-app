@@ -84,7 +84,12 @@ const x = [
   {
     type: 'templates',
     model: {
-      data: [],
+      data: [
+        {
+          SIFA: { type: String },
+          SIGEKO: { type: String },
+        },
+      ],
     },
   },
 ];
