@@ -84,7 +84,7 @@ const x = [
   {
     type: 'templates',
     model: {
-      templateData: {},
+      data: [],
     },
   },
 ];
