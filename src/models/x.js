@@ -81,6 +81,12 @@ const x = [
       data: [],
     },
   },
+  {
+    type: 'templates',
+    model: {
+      templateData: {},
+    },
+  },
 ];
 
 module.exports = x;
