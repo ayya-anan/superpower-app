@@ -81,6 +81,13 @@ const x = [
       data: [],
     },
   },
+  {
+    type: 'templates',
+    model: {
+      SIFA: { type: String, required: false },
+      SIGEKO: { type: String, required: false },
+    },
+  },
 ];
 
 module.exports = x;
