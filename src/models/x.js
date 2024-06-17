@@ -86,6 +86,13 @@ const x = [
     model: {
       SIFA: { type: String, required: false },
       SIGEKO: { type: String, required: false },
+      OSA: { type: String, required: false },
+      COACHING: { type: String, required: false },
+      GAP: { type: String, required: false },
+      BAFA: { type: String, required: false },
+      QM: { type: String, required: false },
+      AUDITS: { type: String, required: false },
+      IOMS: { type: String, required: false },
     },
   },
 ];
