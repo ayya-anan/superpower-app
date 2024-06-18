@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const diffHistory = require('mongoose-audit-trail');
 const { toJSON, paginate } = require('../plugins');
 
 const dealSchema = mongoose.Schema(
@@ -31,7 +32,7 @@ const dealSchema = mongoose.Schema(
         paymentMilestone: { type: Number },
         services: [
           {
-            dealType: { type: String, required: true },
+            dealType: { type: String },
             facility: { type: String },
             type: { type: String },
             service: { type: Object, required: true },
@@ -73,6 +74,7 @@ const dealSchema = mongoose.Schema(
 // add plugin that converts mongoose to json
 dealSchema.plugin(toJSON);
 dealSchema.plugin(paginate);
+dealSchema.plugin(diffHistory.plugin, { omit: ['_id', 'id', 'createdAt', 'updatedAt', '__v'] });
 
 const Deal = mongoose.model('Deal', dealSchema);
 
