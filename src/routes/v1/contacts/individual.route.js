@@ -17,8 +17,6 @@ router
   .patch(validate(individualValidation.updateIndividual), individualController.updateIndividual)
   .delete(validate(individualValidation.deleteIndividual), individualController.deleteIndividual);
 
-router
-  .route('/getTotalHours/')
-  .post(allocationController.getTotalHours);
+router.route('/getTotalHours/').post(allocationController.getTotalHours);
 
 module.exports = router;

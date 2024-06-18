@@ -1,30 +1,36 @@
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-const config = require('./config');
-const { tokenTypes } = require('./tokens');
-const { User } = require('../models');
 
 const jwtOptions = {
-  secretOrKey: config.jwt.secret,
+  secretOrKey: `-----BEGIN PUBLIC KEY-----\n${process.env.KEYCLOAK_PUBLIC_KEY}\n-----END PUBLIC KEY-----`,
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  algorithms: ['RS256'], // Ensure the algorithm matches Keycloak's configuration
 };
 
-const jwtVerify = async (payload, done) => {
+const jwtVerify = (payload, done) => {
   try {
-    if (payload.type !== tokenTypes.ACCESS) {
+    // Verify the token type
+    if (payload.typ !== 'Bearer') {
       throw new Error('Invalid token type');
     }
-    const user = await User.findById(payload.sub);
-    if (!user) {
-      return done(null, false);
-    }
+
+    const user = {
+      id: payload.sub,
+      username: payload.preferred_username,
+      email: payload.email,
+      name: payload.name,
+      role: payload.realm_access.roles, // Assuming roles are stored here
+      // Add other necessary fields from the payload
+    };
+
     done(null, user);
   } catch (error) {
     done(error, false);
   }
 };
 
-const jwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
+// Configure the JWT strategy
+const setupJwtStrategy = new JwtStrategy(jwtOptions, jwtVerify);
 
 module.exports = {
-  jwtStrategy,
+  setupJwtStrategy,
 };
