@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-// const diffHistory = require('mongoose-audit-trail');
+const { plugin } = require('@sliit-foss/mongoose-audit'); // Destructure the plugin function
 const { toJSON, paginate } = require('../plugins');
+const userContext = require('../../utils/usercontext');
 
 const dealSchema = mongoose.Schema(
   {
@@ -71,10 +72,13 @@ const dealSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+dealSchema.plugin(plugin, {
+  getUser: () => userContext.getCurrentUser().name,
+  exclude: ['_id', 'id', 'createdAt', 'updatedAt', '__v', 'quotes._id'],
+});
 // add plugin that converts mongoose to json
 dealSchema.plugin(toJSON);
 dealSchema.plugin(paginate);
-// dealSchema.plugin(diffHistory.plugin, { omit: ['_id', 'id', 'createdAt', 'updatedAt', '__v'] });
 
 const Deal = mongoose.model('Deal', dealSchema);
 
