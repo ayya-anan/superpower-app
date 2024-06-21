@@ -26,6 +26,7 @@ const postBodySchema = Joi.object({
         alternateEmail: Joi.string().allow(null).allow(''),
         primaryPhone: Joi.string().allow(null).allow(''),
         alternatePhone: Joi.string().allow(null).allow(''),
+        city: Joi.string().allow(null).allow(''),
         address: Joi.string().allow(null).allow(''),
         country: Joi.string().allow(null).allow(''),
         zipCode: Joi.string().allow(null).allow(''),

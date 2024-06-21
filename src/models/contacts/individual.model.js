@@ -91,6 +91,11 @@ const individualSchema = mongoose.Schema(
           required: false,
           trim: true,
         },
+        city: {
+          type: String,
+          required: false,
+          trim: true,
+        },
         address: {
           type: String,
           required: false,
