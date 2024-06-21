@@ -32,6 +32,22 @@ const postBodySchema = Joi.object({
       })
     )
     .allow(''),
+  workDetails: Joi.object({
+    employeeNumber: Joi.number().allow(null).allow(),
+    initials: Joi.string().allow(null).allow(''),
+    dateOfJoining: Joi.date().allow(null).allow(''),
+    lastWorkingDay: Joi.date().allow(null).allow(''),
+    reportingManager: Joi.string().allow(null).allow(''),
+    workingHours: Joi.object({
+      sunday: Joi.number().allow(null).allow(),
+      monday: Joi.number().allow(null).allow(),
+      tuesday: Joi.number().allow(null).allow(),
+      wednesday: Joi.number().allow(null).allow(),
+      thursday: Joi.number().allow(null).allow(),
+      friday: Joi.number().allow(null).allow(),
+      saturday: Joi.number().allow(null).allow(),
+    }),
+  }).allow(''),
 });
 
 const createIndividual = {

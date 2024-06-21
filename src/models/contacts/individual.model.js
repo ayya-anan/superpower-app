@@ -107,6 +107,61 @@ const individualSchema = mongoose.Schema(
         },
       },
     ],
+    workDetails: {
+      employeeNumber: {
+        type: Number,
+        required: false,
+        trim: true,
+      },
+      initials: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      dateOfJoining: {
+        type: Date,
+        required: false,
+      },
+      lastWorkingDay: {
+        type: Date,
+        required: false,
+      },
+      reportingManager: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      workingHours: {
+        sunday: {
+          type: Number,
+          required: false,
+        },
+        monday: {
+          type: Number,
+          required: false,
+        },
+        tuesday: {
+          type: Number,
+          required: false,
+        },
+        wednesday: {
+          type: Number,
+          required: false,
+        },
+        thursday: {
+          type: Number,
+          required: false,
+        },
+        friday: {
+          type: Number,
+          required: false,
+        },
+        saturday: {
+          type: Number,
+          required: false,
+        },
+      },
+    },
   },
   { timestamps: true }
 );
