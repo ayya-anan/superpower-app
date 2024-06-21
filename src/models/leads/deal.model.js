@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+const { plugin } = require('@sliit-foss/mongoose-audit'); // Destructure the plugin function
 const { toJSON, paginate } = require('../plugins');
+const userContext = require('../../utils/usercontext');
 
 const dealSchema = mongoose.Schema(
   {
@@ -31,7 +33,7 @@ const dealSchema = mongoose.Schema(
         paymentMilestone: { type: Number },
         services: [
           {
-            dealType: { type: String, required: true },
+            dealType: { type: String },
             facility: { type: String },
             type: { type: String },
             service: { type: Object, required: true },
@@ -70,6 +72,10 @@ const dealSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+dealSchema.plugin(plugin, {
+  getUser: () => userContext.getCurrentUser().name,
+  exclude: ['_id', 'id', 'createdAt', 'updatedAt', '__v', 'quotes._id'],
+});
 // add plugin that converts mongoose to json
 dealSchema.plugin(toJSON);
 dealSchema.plugin(paginate);

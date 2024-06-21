@@ -4,6 +4,7 @@ const userRoute = require('./user.route');
 const docsRoute = require('./docs.route');
 const xRoute = require('./x.route');
 const templateRoute = require('./template.route');
+const auditRoute = require('./audit.route');
 const individualRoute = require('./contacts/individual.route');
 const organizationRoute = require('./contacts/organization.route');
 const config = require('../../config/config');
@@ -39,6 +40,10 @@ const defaultRoutes = [
   {
     path: '/template',
     route: templateRoute,
+  },
+  {
+    path: '/audit',
+    route: auditRoute,
   },
 ];
 

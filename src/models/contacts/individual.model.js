@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 // const validator = require('validator');
+// const diffHistory = require('mongoose-audit-trail');
 const { toJSON, paginate } = require('../plugins');
 const { statusEmuns } = require('../../config/enums');
 
@@ -169,6 +170,7 @@ const individualSchema = mongoose.Schema(
 // add plugin that converts mongoose to json
 individualSchema.plugin(toJSON);
 individualSchema.plugin(paginate);
+// individualSchema.plugin(diffHistory.plugin);
 
 const Individual = mongoose.model('Individual', individualSchema);
 
