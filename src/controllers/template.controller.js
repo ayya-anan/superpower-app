@@ -49,7 +49,7 @@ const createInvoice = catchAsync(async (req, res) => {
   );
   const msg = {
     to: ['jerinjose.j@gmail.com', 'k.karthikeyan@raisusa.com', 'subhavenkat@raisusa.com'], // Change to your recipient
-    from: 'Expert people Management <k.karthikeyan@raisusa.com>', // Change to your verified sender ${req.user.email}
+    from: `Expert people Management <${req.user.email}>`, // Change to your verified sender ${req.user.email}
     templateId: 'd-dc1b9185e6ef43fcaa6614de4a1cc1cc',
     attachments,
   };

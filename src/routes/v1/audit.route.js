@@ -59,6 +59,7 @@ router.get('/:table/:id/histories', (req, res, next) => {
           changedAt: history.created_at,
           changedData: changedValues,
           comment,
+          histories,
         });
       });
 

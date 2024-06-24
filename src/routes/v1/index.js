@@ -9,6 +9,7 @@ const individualRoute = require('./contacts/individual.route');
 const organizationRoute = require('./contacts/organization.route');
 const config = require('../../config/config');
 const DealRoute = require('./leads/deal.route');
+const UploadRoute = require('./upload.route');
 
 const router = express.Router();
 
@@ -44,6 +45,10 @@ const defaultRoutes = [
   {
     path: '/audit',
     route: auditRoute,
+  },
+  {
+    path: '/upload',
+    route: UploadRoute,
   },
 ];
 
